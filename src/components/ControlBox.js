@@ -1,26 +1,30 @@
 import React from "react";
 import SearchInput from "./SearchInput";
-import SearchItem from "./SearchItem";
-import ItemsContainer from "./ItemsContainer";
+import PlacesContainer from "./PlacesContainer";
 
 class ControlBox extends React.Component {
   state = { places: [], display: "hidden" };
 
-  displaySuggestions = (suggestions, state) => {
+  displayPlaces = (suggestions, state) => {
     if (state === "OK") {
-      const descriptions = suggestions.map((suggestion) => {
-        return <SearchItem place={suggestion} />;
-      });
-      this.setState({ places: descriptions, display: "block" });
+      const places = suggestions;
+      this.setState({ places: places });
     }
+  };
+
+  updateDisplay = (display) => {
+    this.setState({ display: display });
   };
 
   render() {
     return (
       <div id="control-box" className="pl-3 pt-3 absolute z-50">
-        <SearchInput displaySuggestions={this.displaySuggestions} />
-        <ItemsContainer
-          items={this.state.places}
+        <SearchInput
+          displayPlaces={this.displayPlaces}
+          updateDisplay={this.updateDisplay}
+        />
+        <PlacesContainer
+          places={this.state.places}
           display={this.state.display}
         />
       </div>

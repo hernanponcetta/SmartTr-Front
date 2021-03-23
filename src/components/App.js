@@ -1,11 +1,11 @@
 import React from "react";
 import Map from "./Map";
-import Card from "./ControlBox";
+import ControlBox from "./ControlBox";
 
 const App = () => {
   return (
     <div>
-      <Card />
+      <ControlBox />
       <Map
         id="map"
         onMapLoad={(map) => {

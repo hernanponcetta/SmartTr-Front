@@ -1,5 +1,5 @@
 import React from "react";
-import SearchItem from "./SearchItem";
+import SearchItem from "./PlaceItem";
 
 const service = new window.google.maps.places.AutocompleteService();
 
@@ -8,17 +8,23 @@ class SearchInput extends React.Component {
 
   handleChange = (event) => {
     this.setState({ value: event.target.value });
+
     if (this.state.value !== "") {
       service.getQueryPredictions(
         { input: this.state.value },
-        this.props.displaySuggestions
+        this.props.displayPlaces
       );
+      this.props.updateDisplay("block");
+    } else {
+      this.props.updateDisplay("hidden");
     }
   };
 
   handleSubmit(event) {
     event.preventDefault();
   }
+
+  componentDidUpdate() {}
 
   render() {
     return (
