@@ -20,13 +20,34 @@ const stringMatched = (description, matched_substring) => {
   return { head, term, tail };
 };
 
-const PlaceItem = ({ description, matched_substring }) => {
+const PlaceItem = ({
+  placeId,
+  map,
+  description,
+  matched_substring,
+  addMarker,
+}) => {
   description = descriptionChop(description);
   const { head, term, tail } = stringMatched(description, matched_substring);
+
+  const service = new window.google.maps.places.PlacesService(map);
+
+  const handleOnClick = () => {
+    service.getDetails(
+      {
+        placeId: placeId,
+      },
+      addMarker
+    );
+  };
+
   return (
-    <div className="text-xs text-gray-600 py-2 hover:bg-gray-100 flex">
+    <div
+      onClick={handleOnClick}
+      className="text-xs text-gray-600 py-2 hover:bg-gray-100 flex"
+    >
       <LocationMarker />
-      <div className="self-center px-1">
+      <div className="self-center px-1 w-full">
         {head} <span className="font-bold text-gray-800">{term}</span> {tail}
       </div>
     </div>

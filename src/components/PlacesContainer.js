@@ -1,13 +1,16 @@
 import React from "react";
 import PlaceItem from "./PlaceItem";
 
-const PlacesContainer = ({ places, display }) => {
+const PlacesContainer = ({ map, places, display, addMarker }) => {
   const placesList = places.map((place) => {
     return (
       <PlaceItem
         key={place.place_id}
+        placeId={place.place_id}
+        map={map}
         description={place.description}
         matched_substring={place.matched_substrings[0]}
+        addMarker={addMarker}
       />
     );
   });

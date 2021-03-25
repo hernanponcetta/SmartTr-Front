@@ -2,7 +2,7 @@ import React from "react";
 
 const LocationMarker = () => {
   return (
-    <div className="w-7 mx-3 text-gray-600">
+    <div className="w-7 mx-3 text-red-400">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

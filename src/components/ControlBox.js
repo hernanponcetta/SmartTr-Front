@@ -8,7 +8,7 @@ class ControlBox extends React.Component {
   displayPlaces = (suggestions, state) => {
     if (state === "OK") {
       const places = suggestions;
-      this.setState({ places: places });
+      this.setState({ places: places, display: "block" });
     }
   };
 
@@ -19,13 +19,12 @@ class ControlBox extends React.Component {
   render() {
     return (
       <div id="control-box" className="pl-3 pt-3 absolute z-50">
-        <SearchInput
-          displayPlaces={this.displayPlaces}
-          updateDisplay={this.updateDisplay}
-        />
+        <SearchInput displayPlaces={this.displayPlaces} />
         <PlacesContainer
+          addMarker={this.props.addMarker}
           places={this.state.places}
           display={this.state.display}
+          map={this.props.map}
         />
       </div>
     );

@@ -10,21 +10,16 @@ class SearchInput extends React.Component {
     this.setState({ value: event.target.value });
 
     if (this.state.value !== "") {
-      service.getQueryPredictions(
+      service.getPlacePredictions(
         { input: this.state.value },
         this.props.displayPlaces
       );
-      this.props.updateDisplay("block");
-    } else {
-      this.props.updateDisplay("hidden");
     }
   };
 
   handleSubmit(event) {
     event.preventDefault();
   }
-
-  componentDidUpdate() {}
 
   render() {
     return (
