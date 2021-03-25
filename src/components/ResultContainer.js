@@ -1,15 +1,16 @@
+import { PreviousMap } from "postcss";
 import React from "react";
-import PlaceItem from "./PlaceItem";
+import SerachResult from "./SearchResult";
+import SearchResult from "./SearchResult";
 
-const PlacesContainer = ({ map, places, display, addMarker }) => {
+const ResultContainer = ({ resetInput, map, places, display, addMarker }) => {
   const placesList = places.map((place) => {
     return (
-      <PlaceItem
+      <SerachResult
+        resetInput={resetInput}
         key={place.place_id}
-        placeId={place.place_id}
+        place={place}
         map={map}
-        description={place.description}
-        matched_substring={place.matched_substrings[0]}
         addMarker={addMarker}
       />
     );
@@ -23,4 +24,4 @@ const PlacesContainer = ({ map, places, display, addMarker }) => {
   );
 };
 
-export default PlacesContainer;
+export default ResultContainer;
